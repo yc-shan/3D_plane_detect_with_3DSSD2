@@ -1,0 +1,48 @@
+DATASET: 'airplaneDataset'
+DATA_PATH: '/home/sim2real/3DSSD-torch-master/data/airplane_2187'
+
+POINT_CLOUD_RANGE: [-200, -200, -200, 200, 200, 200]
+
+DATA_SPLIT: {
+    'train': train,
+    'test': val
+}
+
+#INFO_PATH: {
+#    'train': [kitti_infos_train.pkl],
+#    'test': [kitti_infos_val.pkl],
+#}
+
+FOV_POINTS_ONLY: True
+
+
+DATA_AUGMENTOR:
+    DISABLE_AUG_LIST: ['placeholder']
+    AUG_CONFIG_LIST:
+
+
+        - NAME: random_world_rotation
+          WORLD_ROT_ANGLE: [-0.78539816, 0.78539816]
+
+        - NAME: random_world_scaling
+          WORLD_SCALE_RANGE: [0.95, 1.05]
+
+
+POINT_FEATURE_ENCODING: {
+    encoding_type: absolute_coordinates_encoding,
+    used_feature_list: ['x', 'y', 'z', 'intensity'],
+    src_feature_list: ['x', 'y', 'z', 'intensity'],
+}
+
+
+DATA_PROCESSOR:
+#    - NAME: mask_points_and_boxes_outside_range
+#      REMOVE_OUTSIDE_BOXES: True
+
+    - NAME: shuffle_points
+      SHUFFLE_ENABLED: {
+        'train': True,
+        'test': False
+      }
+
+

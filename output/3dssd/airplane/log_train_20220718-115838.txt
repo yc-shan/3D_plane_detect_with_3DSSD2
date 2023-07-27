@@ -1,0 +1,380 @@
+2022-07-18 11:58:38,415   INFO  **********************Start logging**********************
+2022-07-18 11:58:38,415   INFO  CUDA_VISIBLE_DEVICES=ALL
+2022-07-18 11:58:38,415   INFO  cfg_file         /home/sim2real/3DSSD-torch-master/output/3dssd/airplane/3dssd.yaml
+2022-07-18 11:58:38,415   INFO  batch_size       2
+2022-07-18 11:58:38,415   INFO  epochs           120
+2022-07-18 11:58:38,415   INFO  workers          8
+2022-07-18 11:58:38,415   INFO  extra_tag        default
+2022-07-18 11:58:38,415   INFO  ckpt             None
+2022-07-18 11:58:38,415   INFO  pretrained_model None
+2022-07-18 11:58:38,415   INFO  launcher         none
+2022-07-18 11:58:38,415   INFO  tcp_port         18888
+2022-07-18 11:58:38,415   INFO  sync_bn          False
+2022-07-18 11:58:38,415   INFO  fix_random_seed  False
+2022-07-18 11:58:38,415   INFO  ckpt_save_interval 1
+2022-07-18 11:58:38,416   INFO  local_rank       0
+2022-07-18 11:58:38,416   INFO  max_ckpt_save_num 3
+2022-07-18 11:58:38,416   INFO  merge_all_iters_to_one_epoch False
+2022-07-18 11:58:38,416   INFO  set_cfgs         None
+2022-07-18 11:58:38,416   INFO  max_waiting_mins 0
+2022-07-18 11:58:38,416   INFO  start_epoch      0
+2022-07-18 11:58:38,416   INFO  save_to_file     False
+2022-07-18 11:58:38,416   INFO  cfg.ROOT_DIR: /home/sim2real/3DSSD-torch-master
+2022-07-18 11:58:38,416   INFO  cfg.LOCAL_RANK: 0
+2022-07-18 11:58:38,416   INFO  cfg.CLASS_NAMES: ['airplane']
+2022-07-18 11:58:38,416   INFO  
+cfg.DATA_CONFIG = edict()
+2022-07-18 11:58:38,416   INFO  cfg.DATA_CONFIG.DATASET: airplaneDataset
+2022-07-18 11:58:38,416   INFO  cfg.DATA_CONFIG.DATA_PATH: /home/sim2real/3DSSD-torch-master/data/airplane_2187
+2022-07-18 11:58:38,416   INFO  cfg.DATA_CONFIG.POINT_CLOUD_RANGE: [-200, -200, -200, 200, 200, 200]
+2022-07-18 11:58:38,416   INFO  
+cfg.DATA_CONFIG.DATA_SPLIT = edict()
+2022-07-18 11:58:38,416   INFO  cfg.DATA_CONFIG.DATA_SPLIT.train: train
+2022-07-18 11:58:38,416   INFO  cfg.DATA_CONFIG.DATA_SPLIT.test: val
+2022-07-18 11:58:38,416   INFO  cfg.DATA_CONFIG.FOV_POINTS_ONLY: True
+2022-07-18 11:58:38,416   INFO  
+cfg.DATA_CONFIG.DATA_AUGMENTOR = edict()
+2022-07-18 11:58:38,417   INFO  cfg.DATA_CONFIG.DATA_AUGMENTOR.DISABLE_AUG_LIST: ['placeholder']
+2022-07-18 11:58:38,417   INFO  cfg.DATA_CONFIG.DATA_AUGMENTOR.AUG_CONFIG_LIST: [{'NAME': 'random_world_rotation', 'WORLD_ROT_ANGLE': [-0.78539816, 0.78539816]}, {'NAME': 'random_world_scaling', 'WORLD_SCALE_RANGE': [0.95, 1.05]}]
+2022-07-18 11:58:38,417   INFO  
+cfg.DATA_CONFIG.POINT_FEATURE_ENCODING = edict()
+2022-07-18 11:58:38,417   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.encoding_type: absolute_coordinates_encoding
+2022-07-18 11:58:38,417   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.used_feature_list: ['x', 'y', 'z', 'intensity']
+2022-07-18 11:58:38,417   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.src_feature_list: ['x', 'y', 'z', 'intensity']
+2022-07-18 11:58:38,417   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR: [{'NAME': 'sample_points', 'NUM_POINTS': {'train': 16384, 'test': 16384}}, {'NAME': 'shuffle_points', 'SHUFFLE_ENABLED': {'train': True, 'test': False}}]
+2022-07-18 11:58:38,417   INFO  cfg.DATA_CONFIG._BASE_CONFIG_: /home/sim2real/3DSSD-torch-master/tools/cfgs/dataset_configs/airplane_dataset.yaml
+2022-07-18 11:58:38,417   INFO  
+cfg.MODEL = edict()
+2022-07-18 11:58:38,417   INFO  cfg.MODEL.NAME: SSD3D
+2022-07-18 11:58:38,417   INFO  
+cfg.MODEL.BACKBONE_3D = edict()
+2022-07-18 11:58:38,417   INFO  cfg.MODEL.BACKBONE_3D.NAME: PointNet2MSG_FPS
+2022-07-18 11:58:38,417   INFO  
+cfg.MODEL.BACKBONE_3D.SA_CONFIG = edict()
+2022-07-18 11:58:38,417   INFO  cfg.MODEL.BACKBONE_3D.SA_CONFIG.NPOINTS: [[4096], [512], [256, 256]]
+2022-07-18 11:58:38,417   INFO  cfg.MODEL.BACKBONE_3D.SA_CONFIG.RADIUS: [[0.2, 0.4, 0.8], [0.4, 0.8, 1.6], [1.6, 3.2, 4.8]]
+2022-07-18 11:58:38,417   INFO  cfg.MODEL.BACKBONE_3D.SA_CONFIG.NSAMPLE: [[32, 32, 64], [32, 32, 64], [32, 32, 32]]
+2022-07-18 11:58:38,417   INFO  cfg.MODEL.BACKBONE_3D.SA_CONFIG.MLPS: [[[16, 16, 32], [16, 16, 32], [32, 32, 64]], [[64, 64, 128], [64, 64, 128], [64, 96, 128]], [[128, 128, 256], [128, 192, 256], [128, 256, 256]]]
+2022-07-18 11:58:38,417   INFO  cfg.MODEL.BACKBONE_3D.SA_CONFIG.DILATED_GROUP: [True, True, True]
+2022-07-18 11:58:38,418   INFO  cfg.MODEL.BACKBONE_3D.SA_CONFIG.FPS_MOD: [['D-FPS'], ['FS'], ['F-FPS', 'D-FPS']]
+2022-07-18 11:58:38,418   INFO  cfg.MODEL.BACKBONE_3D.SA_CONFIG.FPS_SAMPLE_RANGE: [[-1], [-1], [512, -1]]
+2022-07-18 11:58:38,418   INFO  cfg.MODEL.BACKBONE_3D.AGGREGATION_CHANNELS: [64, 128, 256]
+2022-07-18 11:58:38,418   INFO  cfg.MODEL.BACKBONE_3D.FP_MLPS: []
+2022-07-18 11:58:38,418   INFO  
+cfg.MODEL.PFE = edict()
+2022-07-18 11:58:38,418   INFO  cfg.MODEL.PFE.NAME: VoteModule
+2022-07-18 11:58:38,418   INFO  cfg.MODEL.PFE.NUM_POINTS: [256]
+2022-07-18 11:58:38,418   INFO  cfg.MODEL.PFE.NUM_INPUT_FEATURES: 256
+2022-07-18 11:58:38,418   INFO  cfg.MODEL.PFE.MLPS: [128]
+2022-07-18 11:58:38,418   INFO  cfg.MODEL.PFE.VOTE_RANGE: [3.0, 3.0, 2.0]
+2022-07-18 11:58:38,418   INFO  cfg.MODEL.PFE.WITH_RES_FEATURE: False
+2022-07-18 11:58:38,418   INFO  cfg.MODEL.PFE.AGGREGATION_MLPS: [[256, 256, 256, 512], [256, 256, 512, 1024]]
+2022-07-18 11:58:38,418   INFO  cfg.MODEL.PFE.AGGREGATION_OUT: 512
+2022-07-18 11:58:38,418   INFO  cfg.MODEL.PFE.AGGREGATION_RADIUS: [4.8, 6.4]
+2022-07-18 11:58:38,418   INFO  cfg.MODEL.PFE.AGGREGATION_NSAMPLES: [16, 32]
+2022-07-18 11:58:38,418   INFO  
+cfg.MODEL.POINT_HEAD = edict()
+2022-07-18 11:58:38,418   INFO  cfg.MODEL.POINT_HEAD.NAME: PointHeadBox3DSSD
+2022-07-18 11:58:38,418   INFO  cfg.MODEL.POINT_HEAD.CLS_FC: [256, 256]
+2022-07-18 11:58:38,418   INFO  cfg.MODEL.POINT_HEAD.REG_FC: [256, 256]
+2022-07-18 11:58:38,419   INFO  cfg.MODEL.POINT_HEAD.CLASS_AGNOSTIC: False
+2022-07-18 11:58:38,419   INFO  cfg.MODEL.POINT_HEAD.USE_POINT_FEATURES_BEFORE_FUSION: False
+2022-07-18 11:58:38,419   INFO  
+cfg.MODEL.POINT_HEAD.TARGET_CONFIG = edict()
+2022-07-18 11:58:38,419   INFO  cfg.MODEL.POINT_HEAD.TARGET_CONFIG.GT_EXTRA_WIDTH: [0.2, 0.2, 0.2]
+2022-07-18 11:58:38,419   INFO  cfg.MODEL.POINT_HEAD.TARGET_CONFIG.BOX_CODER: PointResidual_BinOri_Coder
+2022-07-18 11:58:38,419   INFO  
+cfg.MODEL.POINT_HEAD.TARGET_CONFIG.BOX_CODER_CONFIG = edict()
+2022-07-18 11:58:38,419   INFO  cfg.MODEL.POINT_HEAD.TARGET_CONFIG.BOX_CODER_CONFIG.use_mean_size: True
+2022-07-18 11:58:38,419   INFO  cfg.MODEL.POINT_HEAD.TARGET_CONFIG.BOX_CODER_CONFIG.mean_size: [[86.2, 66.6, 21.9]]
+2022-07-18 11:58:38,419   INFO  
+cfg.MODEL.POINT_HEAD.LOSS_CONFIG = edict()
+2022-07-18 11:58:38,419   INFO  cfg.MODEL.POINT_HEAD.LOSS_CONFIG.LOSS_REG: WeightedSmoothL1Loss
+2022-07-18 11:58:38,419   INFO  cfg.MODEL.POINT_HEAD.LOSS_CONFIG.CORNER_LOSS_REGULARIZATION: True
+2022-07-18 11:58:38,419   INFO  cfg.MODEL.POINT_HEAD.LOSS_CONFIG.CENTERNESS_REGULARIZATION: True
+2022-07-18 11:58:38,419   INFO  cfg.MODEL.POINT_HEAD.LOSS_CONFIG.IOU_REGULARIZATION: True
+2022-07-18 11:58:38,419   INFO  cfg.MODEL.POINT_HEAD.LOSS_CONFIG.POINT_BOX_REG: diou
+2022-07-18 11:58:38,419   INFO  
+cfg.MODEL.POINT_HEAD.LOSS_CONFIG.LOSS_WEIGHTS = edict()
+2022-07-18 11:58:38,419   INFO  cfg.MODEL.POINT_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.point_cls_weight: 1.0
+2022-07-18 11:58:38,419   INFO  cfg.MODEL.POINT_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.point_box_weight: 1.0
+2022-07-18 11:58:38,419   INFO  cfg.MODEL.POINT_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.corner_weight: 1.0
+2022-07-18 11:58:38,419   INFO  cfg.MODEL.POINT_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.code_weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+2022-07-18 11:58:38,419   INFO  
+cfg.MODEL.POST_PROCESSING = edict()
+2022-07-18 11:58:38,420   INFO  cfg.MODEL.POST_PROCESSING.RECALL_THRESH_LIST: [0.3, 0.5, 0.7]
+2022-07-18 11:58:38,420   INFO  cfg.MODEL.POST_PROCESSING.SCORE_THRESH: 0.1
+2022-07-18 11:58:38,420   INFO  cfg.MODEL.POST_PROCESSING.OUTPUT_RAW_SCORE: False
+2022-07-18 11:58:38,420   INFO  cfg.MODEL.POST_PROCESSING.EVAL_METRIC: kitti
+2022-07-18 11:58:38,420   INFO  
+cfg.MODEL.POST_PROCESSING.NMS_CONFIG = edict()
+2022-07-18 11:58:38,420   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.MULTI_CLASSES_NMS: False
+2022-07-18 11:58:38,420   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_TYPE: nms_gpu
+2022-07-18 11:58:38,420   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_THRESH: 0.1
+2022-07-18 11:58:38,420   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_PRE_MAXSIZE: 4096
+2022-07-18 11:58:38,420   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_POST_MAXSIZE: 500
+2022-07-18 11:58:38,420   INFO  
+cfg.OPTIMIZATION = edict()
+2022-07-18 11:58:38,420   INFO  cfg.OPTIMIZATION.BATCH_SIZE_PER_GPU: 12
+2022-07-18 11:58:38,420   INFO  cfg.OPTIMIZATION.NUM_EPOCHS: 120
+2022-07-18 11:58:38,420   INFO  cfg.OPTIMIZATION.OPTIMIZER: adam_onecycle
+2022-07-18 11:58:38,420   INFO  cfg.OPTIMIZATION.LR: 0.001
+2022-07-18 11:58:38,420   INFO  cfg.OPTIMIZATION.WEIGHT_DECAY: 0.01
+2022-07-18 11:58:38,420   INFO  cfg.OPTIMIZATION.MOMENTUM: 0.9
+2022-07-18 11:58:38,420   INFO  cfg.OPTIMIZATION.MOMS: [0.95, 0.85]
+2022-07-18 11:58:38,420   INFO  cfg.OPTIMIZATION.PCT_START: 0.4
+2022-07-18 11:58:38,421   INFO  cfg.OPTIMIZATION.DIV_FACTOR: 10
+2022-07-18 11:58:38,421   INFO  cfg.OPTIMIZATION.DECAY_STEP_LIST: [80, 120]
+2022-07-18 11:58:38,421   INFO  cfg.OPTIMIZATION.LR_DECAY: 0.1
+2022-07-18 11:58:38,421   INFO  cfg.OPTIMIZATION.LR_CLIP: 1e-07
+2022-07-18 11:58:38,421   INFO  cfg.OPTIMIZATION.LR_WARMUP: False
+2022-07-18 11:58:38,421   INFO  cfg.OPTIMIZATION.WARMUP_EPOCH: 1
+2022-07-18 11:58:38,421   INFO  cfg.OPTIMIZATION.GRAD_NORM_CLIP: 10
+2022-07-18 11:58:38,421   INFO  cfg.TAG: 3dssd
+2022-07-18 11:58:38,421   INFO  cfg.EXP_GROUP_PATH: home/sim2real/3DSSD-torch-master/output/3dssd/airplane
+2022-07-18 11:58:41,969   INFO  SSD3D(
+  (vfe): None
+  (backbone_3d): PointNet2MSG_FPS(
+    (SA_modules): ModuleList(
+      (0): PointnetSAModuleMSG_FPS(
+        (groupers): ModuleList(
+          (0): QueryAndGroup()
+          (1): QueryAndGroup()
+          (2): QueryAndGroup()
+        )
+        (mlps): ModuleList(
+          (0): Sequential(
+            (0): Conv2d(4, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+            (3): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (4): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (5): ReLU()
+            (6): Conv2d(16, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (8): ReLU()
+          )
+          (1): Sequential(
+            (0): Conv2d(4, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+            (3): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (4): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (5): ReLU()
+            (6): Conv2d(16, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (8): ReLU()
+          )
+          (2): Sequential(
+            (0): Conv2d(4, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+            (3): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (4): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (5): ReLU()
+            (6): Conv2d(32, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (8): ReLU()
+          )
+        )
+        (points_sampler): Points_Sampler(
+          (samplers): ModuleList(
+            (0): DFPS_Sampler()
+          )
+        )
+      )
+      (1): PointnetSAModuleMSG_FPS(
+        (groupers): ModuleList(
+          (0): QueryAndGroup()
+          (1): QueryAndGroup()
+          (2): QueryAndGroup()
+        )
+        (mlps): ModuleList(
+          (0): Sequential(
+            (0): Conv2d(67, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+            (3): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (5): ReLU()
+            (6): Conv2d(64, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (8): ReLU()
+          )
+          (1): Sequential(
+            (0): Conv2d(67, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+            (3): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (5): ReLU()
+            (6): Conv2d(64, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (8): ReLU()
+          )
+          (2): Sequential(
+            (0): Conv2d(67, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+            (3): Conv2d(64, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (4): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (5): ReLU()
+            (6): Conv2d(96, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (8): ReLU()
+          )
+        )
+        (points_sampler): Points_Sampler(
+          (samplers): ModuleList(
+            (0): FS_Sampler()
+          )
+        )
+      )
+      (2): PointnetSAModuleMSG_FPS(
+        (groupers): ModuleList(
+          (0): QueryAndGroup()
+          (1): QueryAndGroup()
+          (2): QueryAndGroup()
+        )
+        (mlps): ModuleList(
+          (0): Sequential(
+            (0): Conv2d(131, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+            (3): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (4): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (5): ReLU()
+            (6): Conv2d(128, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (8): ReLU()
+          )
+          (1): Sequential(
+            (0): Conv2d(131, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+            (3): Conv2d(128, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (4): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (5): ReLU()
+            (6): Conv2d(192, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (8): ReLU()
+          )
+          (2): Sequential(
+            (0): Conv2d(131, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+            (3): Conv2d(128, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (4): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (5): ReLU()
+            (6): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (7): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (8): ReLU()
+          )
+        )
+        (points_sampler): Points_Sampler(
+          (samplers): ModuleList(
+            (0): FFPS_Sampler()
+            (1): DFPS_Sampler()
+          )
+        )
+      )
+    )
+    (aggregation_mlps): ModuleList(
+      (0): Sequential(
+        (0): Conv1d(128, 64, kernel_size=(1,), stride=(1,), bias=False)
+        (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): Conv1d(384, 128, kernel_size=(1,), stride=(1,), bias=False)
+        (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): Conv1d(768, 256, kernel_size=(1,), stride=(1,), bias=False)
+        (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+    )
+    (FP_modules): ModuleList()
+  )
+  (map_to_bev_module): None
+  (pfe): VoteModule(
+    (vote_mlp): Sequential(
+      (0): Conv1d(256, 128, kernel_size=(1,), stride=(1,))
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Conv1d(128, 3, kernel_size=(1,), stride=(1,))
+    )
+    (vote_aggregation): PointnetSAModuleMSG_FPS(
+      (groupers): ModuleList(
+        (0): QueryAndGroup()
+        (1): QueryAndGroup()
+      )
+      (mlps): ModuleList(
+        (0): Sequential(
+          (0): Conv2d(259, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): ReLU()
+          (3): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (4): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (5): ReLU()
+          (6): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (7): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (8): ReLU()
+        )
+        (1): Sequential(
+          (0): Conv2d(259, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): ReLU()
+          (3): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (5): ReLU()
+          (6): Conv2d(512, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (7): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (8): ReLU()
+        )
+      )
+      (points_sampler): Points_Sampler(
+        (samplers): ModuleList(
+          (0): DFPS_Sampler()
+        )
+      )
+    )
+    (conv_out): Sequential(
+      (0): Conv1d(1536, 512, kernel_size=(1,), stride=(1,), bias=False)
+      (1): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+  )
+  (backbone_2d): None
+  (dense_head): None
+  (point_head): PointHeadBox3DSSD(
+    (cls_loss_func): SigmoidFocalClassificationLoss()
+    (reg_loss_func): WeightedSmoothL1Loss()
+    (cls_center_layers): Sequential(
+      (0): Linear(in_features=512, out_features=256, bias=False)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Linear(in_features=256, out_features=256, bias=False)
+      (4): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (5): ReLU()
+      (6): Linear(in_features=256, out_features=1, bias=True)
+    )
+    (box_center_layers): Sequential(
+      (0): Linear(in_features=512, out_features=256, bias=False)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Linear(in_features=256, out_features=256, bias=False)
+      (4): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (5): ReLU()
+      (6): Linear(in_features=256, out_features=30, bias=True)
+    )
+    (angle_bin_loss): CrossEntropyLoss()
+    (angle_res_loss): SmoothL1Loss()
+    (vote_loss): SmoothL1Loss()
+    (bbox_cls_loss): QualityFocalLoss()
+  )
+  (roi_head): None
+)
+2022-07-18 11:58:41,972   INFO  **********************Start training home/sim2real/3DSSD-torch-master/output/3dssd/airplane/3dssd(default)**********************
